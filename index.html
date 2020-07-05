@@ -6,8 +6,14 @@
     <style>
       #game {
         border: 1px solid black;
-        width: 800px;
+        width: 1000px;
         height: 600px;
+      }
+      #select_traversal {
+        position: absolute;
+        left: 1050px;
+        top: 10px;
+        max-width: 120px;
       }
     </style>
   </head>
@@ -15,6 +21,15 @@
   <body>
     <div id="app"></div>
     <canvas id="game"></canvas>
-    <script src="src/index.js"></script>
+    <div id="select_traversal">
+      <select name="traversal" id="traversal">
+        <option value="dfs">DFS</option>
+        <option value="bfs">BFS</option>
+        <option value="dijkstra">Dijkstra</option>
+        <option value="astar">A*</option>
+      </select>
+      <script type="text/javascript" src="src/index.js"></script>
+      <button id="button">Start Traversal</button>
+    </div>
   </body>
 </html>
