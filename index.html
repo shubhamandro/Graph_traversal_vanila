@@ -16,20 +16,29 @@
         max-width: 120px;
       }
     </style>
+    <script type="text/javascript" src="./src/index.js"></script>
   </head>
 
   <body>
-    <div id="app"></div>
-    <canvas id="game"></canvas>
-    <div id="select_traversal">
-      <select name="traversal" id="traversal">
-        <option value="dfs">DFS</option>
-        <option value="bfs">BFS</option>
-        <option value="dijkstra">Dijkstra</option>
-        <option value="astar">A*</option>
-      </select>
-      <script type="text/javascript" src="src/index.js"></script>
-      <button id="button">Start Traversal</button>
+    <div id="app">
+      <div id="select_traversal">
+        <select name="traversal" id="traversal">
+          <option value="dfs">DFS</option>
+          <option value="bfs">BFS</option>
+          <option value="dijkstra">Dijkstra</option>
+          <option value="astar">A*</option>
+        </select>
+        <input id="start_x" size="10">Start_row:</input>
+      </br>
+        <input id="start_y" size="10">Start_col:</input>
+      </br>
+        <input id="end_x" size="10">End_row:</input>
+      </br>
+        <input id="end_y" size="10">End_col:</input>
+      </br>
+        <button id="button">Start Traversal</button>
+      </div>
     </div>
+    <canvas id="game"></canvas>
   </body>
 </html>

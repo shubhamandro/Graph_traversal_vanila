@@ -23,7 +23,20 @@ export default class grid {
       }
     }
   }
+  clear_grid() {
+    for (var i = 0; i < this.row; i++) {
+      for (var j = 0; j < this.col; j++) {
+        this.grid[i][j].vis = false;
+      }
+    }
+  }
 
+  set_true(i, j) {
+    this.grid[i][j].vis = true;
+  }
+  get_true(i, j) {
+    return this.grid[i][j].vis;
+  }
   dfs(i, j) {
     this.grid[i][j].vis = true;
     var p = new Array(2);
