@@ -27,6 +27,8 @@ export default class grid {
     for (var i = 0; i < this.row; i++) {
       for (var j = 0; j < this.col; j++) {
         this.grid[i][j].vis = false;
+        this.grid[i][j].start = false;
+        this.grid[i][j].end = false;
       }
     }
   }
@@ -36,6 +38,12 @@ export default class grid {
   }
   get_true(i, j) {
     return this.grid[i][j].vis;
+  }
+  set_start(i, j) {
+    this.grid[i][j].start = true;
+  }
+  set_end(i, j) {
+    this.grid[i][j].end = true;
   }
   dfs(i, j) {
     this.grid[i][j].vis = true;

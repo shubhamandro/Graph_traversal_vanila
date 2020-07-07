@@ -10,7 +10,6 @@ var side = 5;
 let grid = new Grid(row, col, side);
 var q = new List();
 grid.draw(context);
-
 var start_pos = {
   x: -1,
   y: -1
@@ -32,22 +31,52 @@ function start_traversal() {
   end_pos.y = document.getElementById("end_y").value - 1;
   grid.clear_grid();
   if (tra == "dfs") {
+    grid.set_start(start_pos.x, start_pos.y);
+    q.clear();
+    q.push(start_pos.x);
+    q.push(start_pos.y);
     dfs();
   }
   if (tra == "bfs") {
+    grid.set_start(start_pos.x, start_pos.y);
+    q.clear();
     q.push(start_pos.x);
     q.push(start_pos.y);
     bfs();
   }
 }
 function dfs() {
-  if (start_pos.x !== end_pos.x || start_pos.y !== end_pos.y) {
+  if (q.length === 0) {
+    return;
+  } else {
+    var yy = q.pop();
+    var xx = q.pop();
+    grid.set_true(xx, yy);
     context.clearRect(0, 0, 800, 600);
-    var p = grid.dfs(start_pos.x, start_pos.y);
-    start_pos.x = p[0];
-    start_pos.y = p[1];
     grid.draw(context);
-    requestAnimationFrame(dfs);
+    if (xx === end_pos.x && yy === end_pos.y) {
+      grid.set_end(xx, yy);
+      grid.draw(context);
+      return;
+    } else {
+      if (xx + 1 < row && grid.get_true(xx + 1, yy) === false) {
+        q.push(xx + 1);
+        q.push(yy);
+      }
+      if (yy + 1 < col && grid.get_true(xx, yy + 1) === false) {
+        q.push(xx);
+        q.push(yy + 1);
+      }
+      if (xx - 1 >= 0 && grid.get_true(xx - 1, yy) === false) {
+        q.push(xx - 1);
+        q.push(yy);
+      }
+      if (yy - 1 >= 0 && grid.get_true(xx, yy - 1) === false) {
+        q.push(xx);
+        q.push(yy - 1);
+      }
+      requestAnimationFrame(dfs);
+    }
   }
 }
 
@@ -61,6 +90,8 @@ function bfs() {
     context.clearRect(0, 0, 800, 600);
     grid.draw(context);
     if (xx === end_pos.x && yy === end_pos.y) {
+      grid.set_end(xx, yy);
+      grid.draw(context);
       return;
     } else {
       if (xx + 1 < row && grid.get_true(xx + 1, yy) === false) {
