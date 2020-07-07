@@ -1,4 +1,5 @@
 import Grid from "./grid";
+import Queue from "./queue";
 var List = require("collections/list");
 
 let canvas = document.getElementById("game");
@@ -9,6 +10,7 @@ var col = 60;
 var side = 5;
 let grid = new Grid(row, col, side);
 var q = new List();
+var queue = new Queue();
 grid.draw(context);
 var start_pos = {
   x: -1,
@@ -39,9 +41,9 @@ function start_traversal() {
   }
   if (tra == "bfs") {
     grid.set_start(start_pos.x, start_pos.y);
-    q.clear();
-    q.push(start_pos.x);
-    q.push(start_pos.y);
+    queue.clear();
+    queue.push(start_pos.x);
+    queue.push(start_pos.y);
     bfs();
   }
 }
@@ -81,11 +83,11 @@ function dfs() {
 }
 
 function bfs() {
-  if (q.length === 0) {
+  if (queue.isEmpty()) {
     return;
   } else {
-    var xx = q.shift();
-    var yy = q.shift();
+    var xx = queue.pop();
+    var yy = queue.pop();
     grid.set_true(xx, yy);
     context.clearRect(0, 0, 800, 600);
     grid.draw(context);
@@ -95,20 +97,20 @@ function bfs() {
       return;
     } else {
       if (xx + 1 < row && grid.get_true(xx + 1, yy) === false) {
-        q.push(xx + 1);
-        q.push(yy);
+        queue.push(xx + 1);
+        queue.push(yy);
       }
       if (yy + 1 < col && grid.get_true(xx, yy + 1) === false) {
-        q.push(xx);
-        q.push(yy + 1);
+        queue.push(xx);
+        queue.push(yy + 1);
       }
       if (xx - 1 >= 0 && grid.get_true(xx - 1, yy) === false) {
-        q.push(xx - 1);
-        q.push(yy);
+        queue.push(xx - 1);
+        queue.push(yy);
       }
       if (yy - 1 >= 0 && grid.get_true(xx, yy - 1) === false) {
-        q.push(xx);
-        q.push(yy - 1);
+        queue.push(xx);
+        queue.push(yy - 1);
       }
       requestAnimationFrame(bfs);
     }
