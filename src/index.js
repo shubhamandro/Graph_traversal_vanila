@@ -1,5 +1,4 @@
 import Grid from "./grid";
-import Queue from "./queue";
 var List = require("collections/list");
 
 let canvas = document.getElementById("game");
@@ -10,7 +9,7 @@ var col = 60;
 var side = 5;
 let grid = new Grid(row, col, side);
 var q = new List();
-var queue = new Queue();
+var queue = new List();
 grid.draw(context);
 var start_pos = {
   x: -1,
@@ -38,12 +37,14 @@ function start_traversal() {
     q.push(start_pos.x);
     q.push(start_pos.y);
     dfs();
-  }
-  if (tra == "bfs") {
+  } else if (tra == "bfs") {
     grid.set_start(start_pos.x, start_pos.y);
     queue.clear();
-    queue.push(start_pos.x);
-    queue.push(start_pos.y);
+    var ele = {
+      x: start_pos.x,
+      y: start_pos.y
+    };
+    queue.push(ele);
     bfs();
   }
 }
@@ -81,13 +82,13 @@ function dfs() {
     }
   }
 }
-
 function bfs() {
-  if (queue.isEmpty()) {
+  if (queue.length === 0) {
     return;
   } else {
-    var xx = queue.pop();
-    var yy = queue.pop();
+    var ele = queue.shift();
+    let xx = ele.x;
+    let yy = ele.y;
     grid.set_true(xx, yy);
     context.clearRect(0, 0, 800, 600);
     grid.draw(context);
@@ -97,22 +98,42 @@ function bfs() {
       return;
     } else {
       if (xx + 1 < row && grid.get_true(xx + 1, yy) === false) {
-        queue.push(xx + 1);
-        queue.push(yy);
+        let next = {
+          x: xx + 1,
+          y: yy
+        };
+        if (!queue.has(next)) {
+          queue.push(next);
+        }
       }
       if (yy + 1 < col && grid.get_true(xx, yy + 1) === false) {
-        queue.push(xx);
-        queue.push(yy + 1);
+        let next = {
+          x: xx,
+          y: yy + 1
+        };
+        if (!queue.has(next)) {
+          queue.push(next);
+        }
       }
       if (xx - 1 >= 0 && grid.get_true(xx - 1, yy) === false) {
-        queue.push(xx - 1);
-        queue.push(yy);
+        let next = {
+          x: xx - 1,
+          y: yy
+        };
+        if (!queue.has(next)) {
+          queue.push(next);
+        }
       }
       if (yy - 1 >= 0 && grid.get_true(xx, yy - 1) === false) {
-        queue.push(xx);
-        queue.push(yy - 1);
+        let next = {
+          x: xx,
+          y: yy - 1
+        };
+        if (!queue.has(next)) {
+          queue.push(next);
+        }
       }
-      requestAnimationFrame(bfs);
     }
   }
+  requestAnimationFrame(bfs);
 }
