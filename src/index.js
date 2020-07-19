@@ -91,7 +91,11 @@ function astar() {
         if (pq.find(next) === false) {
           pq.enqueue(
             next,
-            next.val + Math.abs(end_pos.y - yy) + Math.abs(end_pos.x - xx - 1)
+            next.val +
+              Math.sqrt(
+                (end_pos.y - yy) * (end_pos.y - yy) +
+                  (end_pos.x - xx - 1) * (end_pos.x - xx - 1)
+              )
           );
         }
       }
@@ -104,7 +108,11 @@ function astar() {
         if (pq.find(next) === false) {
           pq.enqueue(
             next,
-            next.val + Math.abs(end_pos.y - yy - 1) + Math.abs(end_pos.x - xx)
+            next.val +
+              Math.sqrt(
+                (end_pos.y - yy - 1) * (end_pos.y - yy - 1) +
+                  (end_pos.x - xx) * (end_pos.x - xx)
+              )
           );
         }
       }
@@ -117,7 +125,11 @@ function astar() {
         if (pq.find(next) === false) {
           pq.enqueue(
             next,
-            next.val + Math.abs(end_pos.y - yy) + Math.abs(end_pos.x - xx + 1)
+            next.val +
+              Math.sqrt(
+                (end_pos.y - yy) * (end_pos.y - yy) +
+                  (end_pos.x - xx + 1) * (end_pos.x - xx + 1)
+              )
           );
         }
       }
@@ -130,7 +142,11 @@ function astar() {
         if (pq.find(next) === false) {
           pq.enqueue(
             next,
-            next.val + Math.abs(end_pos.y - yy + 1) + Math.abs(end_pos.x - xx)
+            next.val +
+              Math.sqrt(
+                (end_pos.y - yy + 1) * (end_pos.y - yy + 1) +
+                  (end_pos.x - xx) * (end_pos.x - xx)
+              )
           );
         }
       }
@@ -148,8 +164,10 @@ function astar() {
           pq.enqueue(
             next,
             next.val +
-              Math.abs(end_pos.y - yy + 1) +
-              Math.abs(end_pos.x - xx + 1)
+              Math.sqrt(
+                (end_pos.y - yy + 1) * (end_pos.y - yy + 1) +
+                  (end_pos.x - xx + 1) * (end_pos.x - xx + 1)
+              )
           );
         }
       }
@@ -167,8 +185,10 @@ function astar() {
           pq.enqueue(
             next,
             next.val +
-              Math.abs(end_pos.y - yy + 1) +
-              Math.abs(end_pos.x - xx - 1)
+              Math.sqrt(
+                (end_pos.y - yy + 1) * (end_pos.y - yy + 1) +
+                  (end_pos.x - xx - 1) * (end_pos.x - xx - 1)
+              )
           );
         }
       }
@@ -186,8 +206,10 @@ function astar() {
           pq.enqueue(
             next,
             next.val +
-              Math.abs(end_pos.y - yy - 1) +
-              Math.abs(end_pos.x - xx + 1)
+              Math.sqrt(
+                (end_pos.y - yy - 1) * (end_pos.y - yy - 1) +
+                  (end_pos.x - xx + 1) * (end_pos.x - xx + 1)
+              )
           );
         }
       }
@@ -205,8 +227,10 @@ function astar() {
           pq.enqueue(
             next,
             next.val +
-              Math.abs(end_pos.y - yy - 1) +
-              Math.abs(end_pos.x - xx - 1)
+              Math.sqrt(
+                (end_pos.y - yy - 1) * (end_pos.y - yy - 1) +
+                  (end_pos.x - xx - 1) * (end_pos.x - xx - 1)
+              )
           );
         }
       }
