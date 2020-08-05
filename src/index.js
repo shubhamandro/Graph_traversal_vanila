@@ -269,38 +269,38 @@ function dfs() {
         q.push(xx);
         q.push(yy - 1);
       }
-      if (
-        xx + 1 < row &&
-        yy + 1 < col &&
-        grid.get_true(xx + 1, yy + 1) === false
-      ) {
-        q.push(xx + 1);
-        q.push(yy + 1);
-      }
-      if (
-        yy + 1 < col &&
-        xx - 1 >= 0 &&
-        grid.get_true(xx - 1, yy + 1) === false
-      ) {
-        q.push(xx - 1);
-        q.push(yy + 1);
-      }
-      if (
-        xx - 1 >= 0 &&
-        yy - 1 >= 0 &&
-        grid.get_true(xx - 1, yy - 1) === false
-      ) {
-        q.push(xx - 1);
-        q.push(yy - 1);
-      }
-      if (
-        yy - 1 >= 0 &&
-        xx + 1 < row &&
-        grid.get_true(xx + 1, yy - 1) === false
-      ) {
-        q.push(xx + 1);
-        q.push(yy - 1);
-      }
+      // if (
+      //   xx + 1 < row &&
+      //   yy + 1 < col &&
+      //   grid.get_true(xx + 1, yy + 1) === false
+      // ) {
+      //   q.push(xx + 1);
+      //   q.push(yy + 1);
+      // }
+      // if (
+      //   yy + 1 < col &&
+      //   xx - 1 >= 0 &&
+      //   grid.get_true(xx - 1, yy + 1) === false
+      // ) {
+      //   q.push(xx - 1);
+      //   q.push(yy + 1);
+      // }
+      // if (
+      //   xx - 1 >= 0 &&
+      //   yy - 1 >= 0 &&
+      //   grid.get_true(xx - 1, yy - 1) === false
+      // ) {
+      //   q.push(xx - 1);
+      //   q.push(yy - 1);
+      // }
+      // if (
+      //   yy - 1 >= 0 &&
+      //   xx + 1 < row &&
+      //   grid.get_true(xx + 1, yy - 1) === false
+      // ) {
+      //   q.push(xx + 1);
+      //   q.push(yy - 1);
+      // }
       requestAnimationFrame(dfs);
     }
   }
